@@ -16,7 +16,7 @@ export default function Spotify() {
   const[headerBackground, setheaderBackground] = useState(false);
 
   const bodyScrolled = ()=>{
-    bodyRef.current.scrollTop >= 30 ? setNavBackground(true):setNavBackground(false)
+    bodyRef.current.scrollTop >= 15 ? setNavBackground(true):setNavBackground(false)
     bodyRef.current.scrollTop >= 268 ? setheaderBackground(true):setheaderBackground(false)
   }
 
@@ -28,6 +28,7 @@ export default function Spotify() {
             "Content-Type": "application/json",
           },
         });
+        // console.log({data},"spotifyyyyyyyyyy")
         const userInfo ={
           userId:data.id,
           userName:data.display_name,
@@ -72,6 +73,16 @@ const Container = styled.div`
         height: 100%;
         width: 100%;
         overflow: auto;
+
+        &::-webkit-scrollbar{
+        width: 0.2rem;
+        
+        &-thumb{
+         
+          background-color: rgba(255,255,255,0.6);
+        }
+
+      }
     }
   }
 `;

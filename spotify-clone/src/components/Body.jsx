@@ -44,6 +44,11 @@ export default function Body({headerBackground}) {
     };
     getInitialPlaylist();
   }, [token, dispatch, selectedPlaylistId]);
+  const msToMinutesAndSeconds = (ms)=>{
+    const minutes = Math.floor(ms/60000);
+    const seconds = ((ms % 60000)/ 1000).toFixed(0);
+    return minutes + ":" +(seconds < 10 ? "0" : "" )+seconds;
+  }
   return (
     <Container headerBackground={headerBackground}>
       {selectedPlaylist && (
@@ -104,7 +109,7 @@ export default function Body({headerBackground}) {
                         <span>{album}</span>
                       </div>
                       <div className="col">
-                        {/* <span>{msToMinutesAndSeconds(duration)}</span> */}
+                        <span>{msToMinutesAndSeconds(duration)}</span>
                       </div>
                     </div>
                 )
@@ -146,7 +151,8 @@ const Container = styled.div`
       margin: 1rem 0 0 0;
       color: #dddcdc;
       position: sticky;
-      top: 15vh;
+      top: ${({ headerBackground }) =>
+        headerBackground ? "8vh" : "15vh"};
       padding: 1rem 3rem;
       transition: 0.3s ease-in-out;
       background-color: ${({ headerBackground }) =>

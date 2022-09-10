@@ -1,17 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import {FaSearch} from "react-icons/fa"
 import {CgProfile} from "react-icons/cg"
 import { useStateProvider } from "../utils/StateProvider";
 
 export default function Navbar({navBackground}) {
+  // const [inputClose, setinputClose] = useState(false)
   const [{userInfo} ] = useStateProvider();
-  // console.log(userInfo)
+
+
+
+ 
+
+  console.log(userInfo)
   return (
-    <Container navBackground={navBackground}>
+    <Container navBackground={navBackground} >
       <div className="search__bar">
-        <FaSearch/>
-        <input type="text" placeholder='Artists, songs or podcasts' />
+        <FaSearch  />
+        <input type="text"  placeholder='Artists, songs or podcasts' />
       </div>
       <div className="avatar">
         <a href="#">
@@ -21,25 +27,28 @@ export default function Navbar({navBackground}) {
       </div>
     </Container>
   )
+  
 }
+// console.log(inputClose)
 const Container = styled.div`
 display: flex;
 justify-content: space-between;
 align-items: center;
 padding: 2rem;
-height: 15vh;
+height: ${({navBackground})=>navBackground ? "0px": "15vh"};
 position: sticky;
 top: 0;
 transition: 0.3s ease-in-out;
 background-color: ${({navBackground})=>navBackground ? "rgba(0,0,0,0.7)" : "none"};
 .search__bar{
   background-color: white;
-  width: 30%;
+  width: 20rem;
   padding: 0.4rem 1rem;
   border-radius: 2rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  /* border: ${(inputClose)=>inputClose ? '1px solid red' :"none"}; */
   input{
     border: none;
     height: 2rem;
